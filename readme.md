@@ -24,6 +24,8 @@
 - Optional Challenges
 
 - Recursion
+
+- Searching Algorithms
   
 
 ## Table of Contents
