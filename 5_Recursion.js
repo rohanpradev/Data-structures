@@ -136,12 +136,98 @@ function factorial(num) {
  * @example
  * 4! = 4 * 3 * 2 * 1
  * should give a result of 24
+ * fact(4) executes as shown below
+ *
+ * @step
+ * since 4 !== 1
+ * we get return 4 * fact(3);
+ * at this point the computer doesnt know what to multiply 4 with as fact(3) is unknown
+ * so it waits for result
+ * 4 * 3 * fact(2)
+ * it stiill waits for fact(2)
+ * 4 * 3 * 2 * fact(1) = 4 * 3 * 2 * 1
+ * giving result of 24
  *
  * @param {number} num
  */
+
 function fact(num) {
 	if (num === 1) return 1;
-	return fact(num) * fact(n - 1);
+	return num * fact(n - 1);
 }
+
+//#endregion
+
+//#region Pitfalls/Drawbacks of Recursion
+
+/**
+ * @description
+ * Where things go wrong:
+ * 1) No base case
+ * 2) Forgetting to return or returning the wrong things
+ * 3) stack overflow
+ *
+ * @example for 2
+ * num * fact(num) instead of num* fact(num - 1)
+ *
+ * @example for 3
+ * Maximimum call stack size reached
+ */
+
+//#endregion
+
+//#region Helper method Recursion
+
+/**
+ * The below function is making use of a helper function
+ * which calls helper function
+ * helper function is a recursive function which calls itself
+ *
+ * @param {number} input
+ */
+function outer(input) {
+	var outerScopedVariable = [];
+
+	function helper(helperInput) {
+		// modift the outerScopedVariable
+		helper(helperInput--);
+	}
+
+	helper(input);
+	return outerScopedVariable;
+}
+
+// A more useful example
+/**
+ * @function collectOddValues
+ * @param {array} arr an array of numbers
+ * @returns {array} an array of odd number provided in the input
+ *
+ *
+ * @example
+ * collectOddValues([1,2,3,4,5,6,7,8,9,10]); // [1, 3, 5, 7, 9]
+ *
+ */
+
+function collectOddValues(arr) {
+	let result = [];
+
+	function helper(helperInput) {
+		if (helperInput.length === 0) {
+			return;
+		}
+		if (helperInput[0] % 2 === 1) {
+			result.push(helperInput[0]);
+		}
+		helper(helperInput.slice(1));
+	}
+
+	helper(arr);
+	return result;
+}
+
+//#endregion
+
+//#region Pure Recursion
 
 //#endregion

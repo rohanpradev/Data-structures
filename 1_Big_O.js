@@ -1,7 +1,14 @@
 /**
  * @fileoverview BIG O
  * This section contains all information about the Big O notation
- * @license Colt_Steele Udemy
+ * @author Colt_Steele Udemy
+ *
+ * @description
+ * In case you want to try out the examples you can open dveloper tools in the browser
+ * and navigate to Sources tab
+ * on the left side choose snippets and then create a snippet
+ * and paste or write code there.
+ * Enjoy!
  * **/
 
 //#region Timing Our Code
