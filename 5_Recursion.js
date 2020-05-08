@@ -178,7 +178,8 @@ function fact(num) {
 
 //#region Helper method Recursion
 
-/**
+/** Helper function
+ * @description
  * The below function is making use of a helper function
  * which calls helper function
  * helper function is a recursive function which calls itself
@@ -229,5 +230,39 @@ function collectOddValues(arr) {
 //#endregion
 
 //#region Pure Recursion
+
+/** Using Pure recursion
+ *
+ * @summary
+ * We shall have a look at how the above recursive function works looking at and example
+ *
+ * @example
+ * collectOddValues([1, 2, 3, 4, 5])
+ * [1].concat(collectOddValues([2, 3, 4, 5]))
+ * 				    [].concat(collectOddValues([3, 4, 5]))
+ * 								     [3].concat(collectOddValues([4, 5]))
+ * 														[].concat(collectOddValues([5]))
+ * 																			[5].concat(collectOddValues([]))
+ * 																								[]
+ * Summing up
+ * [1, 3, 5] // Try it in the console
+ *
+ * @param {<number>[]} arr
+ * @returns {array} having ood numbers that are present in the input
+ */
+
+function collectOddValues(arr) {
+	const newArr = [];
+
+	if (arr.length === 0) {
+		return newArr;
+	}
+
+	if (arr[0] % 2 !== 0) {
+		newArr.push(arr[0]);
+	}
+	newArr = newArr.concat(collectOddValues(arr.slice(1)));
+	return newArr;
+}
 
 //#endregion
