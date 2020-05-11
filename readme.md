@@ -1,31 +1,61 @@
+
 <!-- PROJECT LOGO -->
+
 <br />
+
 <p align="center">
-  <a href="#">
-    <img src="https://hackr.io/tutorials/learn-data-structures-algorithms/logo/logo-data-structures-algorithms?ver=1550834269"  alt="Logo"  width="80"  height="80">
-  </a>
+<a href="#">
+<img src="https://hackr.io/tutorials/learn-data-structures-algorithms/logo/logo-data-structures-algorithms?ver=1550834269"  alt="Logo"  width="80"  height="80">
+</a>
 
-  <h3 align="center">Algorithms and Data Structures</h3>
+  
 
-  <p align="center">
-    My notes covering various fundamentals and examples of alorithms and data structures!
-    <br />
-  </p>
+<h3 align="center"> Algorithms and Data Structures </h3>
+
+  
+
+<p align="center">
+
+My notes covering various fundamentals and examples of alorithms and data structures
+
+<br />
+
 </p>
 
+</p>
+
+  
+
 <!-- TOPICS-->
+
+  
+
 ## Topics covered
+
+  
+
 - Big O notation
+
+  
 
 - Arrays and Objects
 
+  
+
 - Problem Solving
+
+  
 
 - Optional Challenges
 
+  
+
 - Recursion
 
+  
+
 - Searching Algorithms
+
   
 
 ## Table of Contents
