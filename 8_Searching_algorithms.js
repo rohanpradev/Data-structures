@@ -80,3 +80,56 @@ function binarySearch(arr, val) {
 }
 
 //#endregion
+
+//#region Binary Serach Big O
+
+/**
+ * @description
+ * Suppose we are searching for  13 in the array below
+ * 	[2, 4, 5, 9, 11, 14, 15, 19, 21, 25, 28, 30, 50, 52, 60, 63]
+ * 							 mid 									//mid is 19
+ *
+ * [2, 4, 5, 9, 11, 14, 15]
+ *          mid    				// mid is 9
+ *
+ * [11, 14, 15]
+ * 		mid         //mid is 14
+ *
+ * [11]
+ *  mid
+ *
+ * Therefor 13 is not in this array,
+ * @steps
+ * array has 16 elements
+ * took 4 steps to determine the result
+ *
+ * @example
+ * To add another step we need to souble the number of elements
+ * Let's search for 32
+ * [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 35]
+ *													   mid   // mid is 16
+ *
+ *  [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32, 35]
+ *								mid    // mid is 24
+ *
+ * [25, 26, 27, 28, 29, 30, 32, 35]
+ * 			    mid  // mid is 28
+ *
+ *  [29, 30, 32, 35]
+ *       mid      // mid is 30
+ *
+ * [32, 25]
+ * mid   //mid is 32 hence end
+ *
+ * It took 5 steps to find the result for 32 elements
+ * which is log base 2 n (for 16 elements ~ 2 * 2 * 2 * 2)
+ * (for 32 elements ~ 2 * 2 * 2 * 2 * 2)
+ * Therefore log 2 n
+ *
+ */
+
+//#endregion
+
+//#region Naive String Search
+
+//#endregion

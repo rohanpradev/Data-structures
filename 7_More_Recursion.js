@@ -144,12 +144,22 @@ function flatten(oldArr) {
  */
 
 // My Approach
+
 function capitalizeFirst(arr) {
 	let newArr = [];
 	if (arr.length === 0) return [];
 	else newArr.push(arr[0].charAt(0).toUpperCase() + arr[0].slice(1));
 	newArr = newArr.concat(capitalizeFirst(arr.slice(1)));
 	return newArr;
+}
+
+// Alternate easier approach
+
+function capitalizeFirst(arr, newArr = []) {
+	if (arr.length === 0) return newArr;
+	let str = arr[0];
+	newArr.push(str[0].toUpperCase() + str.slice(1));
+	return capitalizeFirst(arr.slice(1), newArr);
 }
 
 // Author approach
