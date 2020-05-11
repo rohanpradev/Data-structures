@@ -66,8 +66,8 @@ console.log(`Time Elapsed ${(t2 - t1) / 1000} seconds`);
  * so you could call it a O(n)
  *
  * @summary of addUpto2
- * addUpto2 has roughlt 3 calculations(+,* and /) and
- * as the input increases it doesnt increase the calculations still use only 3 operations
+ * addUpto2 has roughly 3 calculations(+,* and /) and
+ * as the input increases it doesnt increase the calculations, still use only 3 operations
  * so you could call it a O(1)
  */
 
@@ -171,7 +171,7 @@ function logMax5(n) {
 
 /**
  * @description Rule of thumb:
- * @rule Most primitive types(booleans,number, undefined, null) are constant space
+ * @rule Most primitive types(booleans, number, undefined, null) are constant space
  * @rule Strings require O(n) space(where n is the string length)
  * @rule Referency type such as Arrays and Objects are generally O(n)
  *       where n is the length(for arrays) or number of keys(for objects)

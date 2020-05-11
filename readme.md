@@ -56,6 +56,8 @@ My notes covering various fundamentals and examples of alorithms and data struct
 
 - Searching Algorithms
 
+
+- Sorting Algorithms
   
 
 ## Table of Contents

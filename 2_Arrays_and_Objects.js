@@ -12,7 +12,7 @@
  * Removal = O(1)
  * Searching = O(n)
  * Access = O(1)
- * When you dont need ordering objects are an excellent choice!
+ * When you don't need ordering objects are an excellent choice!
  *
  * @see
  * Big O Object Methods
@@ -56,5 +56,7 @@ names = ['Raj', 'Michael', 'Melissa', 'Andrea'];
  * slice = O(n)
  * sort = O(n * log n)
  * forEach/map/filter/reduce/etc. = O(n)
+ *
  */
+
 //#endregion

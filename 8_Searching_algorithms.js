@@ -1,6 +1,6 @@
 /**
  * @fileoverview SEARCHING ALGORITHMS
- * This section contains all information aboutvarious search algorithms
+ * This section contains all information about various search algorithms
  * @author Colt_Steele Udemy
  *
  * @description
@@ -131,5 +131,38 @@ function binarySearch(arr, val) {
 //#endregion
 
 //#region Naive String Search
+
+/**
+ * @pseudocode
+ * Loop over the longer str
+ * Loop over shorter string
+ * if the characters dont match, break out of the inner loop
+ * if the characters do match, keep going
+ * If you complete the inner loop and find a match, increment the count of matches
+ * Return the count
+ *
+ * @example
+ * stringSearch("lorie loled", "lol") //1
+ *
+ * @param {string} long
+ * @param {string} short
+ * @returns {number}
+ *
+ */
+
+ function stringSearch(long, short) {
+	let count = 0;
+	for (let i = 0; i < long.length; i++) {
+		for (let j = 0; j < short.length; j++) {
+			if (long[i + j] !== short[j]) { //Move i also because j is increased by 1
+				break;
+			}
+			if (j === short.length - 1) {
+				++count;
+			}
+		}
+	}
+	return count;
+}
 
 //#endregion
