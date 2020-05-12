@@ -61,7 +61,7 @@ const shortNameComparator = (a, b) => a.length - b.length;
 //#region Bubble sort
 /**
  * @function swap
- * which swaps elemsts of an
+ * which swaps elements of an array
  * @param {Array} arr
  * @param {number} idx1
  * @param {number} idx2
@@ -119,8 +119,7 @@ function bubbleSort(arr) {
  * [8, 1, 2, 3, 4, 5, 6, 7]
  * This is sorted in the first iteration but since we loop
  * we are doing unnecessary comparisons
- * So we can use a variable noSwaps to determine
- * if there were no swaps in last iteration
+ * So we can use a variable noSwaps to determine, if there were no swaps in last iteration
  * If there were no swaps in last iteration then there are going to be no swaps in this iteration also
  * Hence break from the loop
  *
@@ -146,5 +145,92 @@ function bubbleSort(arr) {
 }
 
 // Big O of n^2 due to 2 loops
+
+//#endregion
+
+//#region Selection Sort
+
+/**
+ * Similar to bubble sort , but instead of first placing large values into sorted positions,
+ * it places smaller into sorted position
+ *
+ * @example
+ * 			  min(3,5) is 3
+ *     [  5,   3,   4,   1,   2   ]
+ * 		  ^	   ^
+ *
+ * 			   min(3,4) is 3
+ *     [  5,   3,   4,   1,   2   ]
+ *        ^         ^
+ *
+ * 			            min(3,1) is 1
+ *     [  5,   3,   4,   1,   2   ]
+ *        ^              ^
+ *
+ *                      min(1,2) is 1
+ *     [  5,   3,   4,   1,   2   ]
+ *        ^                   ^
+ *
+ * Note swap takes place only once in the end of iteration
+ * After first iteration sorted array looks like this
+ * [1, 3, 4, 5, 2]
+ *
+ * @pseudocode
+ * Store the first element as the smallest value you have seen so far.
+ * Compare this item to the next item in the array until you find a smaller number.
+ * If the smaller number is found designate the smaller number to be the new "minimum"
+ * and continue till the end of the array
+ * If the minimum is not the value you initially began with, swap the two values
+ * Repeat this with the next element until the array is sorted.
+ *
+ *
+ * @function selectionSort
+ * @param {Array} arr
+ * @returns {Array} with sorted values
+ *
+ */
+
+function selectionSort(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		let min = i;
+		for (let j = i + 1; j < arr.length; j++) {
+			if (arr[j] < arr[min]) {
+				min = j;
+			}
+		}
+		if (i !== min) {
+			swap(arr, i, min);
+		}
+	}
+	return arr;
+}
+
+// Big O is O(n^2)
+
+//#endregion
+
+//#region Insertion sort
+
+/**
+ * Builds up the sort by gradually creating a larger left half which is always sorted
+ *
+ * @pseudocode
+ * Start by picking the second element in the array
+ * Now compare the second element with the one before it and swap if necessary
+ * Continue to the next element and if it is in the incorrect order,
+ * iterate through the sorted portion (i.e the left side) to place the elementin the correct place.
+ * Repeat until the array is sorted
+ */
+
+function insertionSort(arr) {
+	for (let i = 1; i < arr.length; i++) {
+		let currentVal = arr[i];
+		for (let j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+			arr[j + 1] = arr[j];
+		}
+		arr[j + 1] = currentVal;
+	}
+	return arr;
+}
 
 //#endregion

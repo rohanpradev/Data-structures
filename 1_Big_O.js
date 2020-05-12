@@ -48,6 +48,7 @@ console.log(`Time Elapsed ${(t2 - t1) / 1000} seconds`);
 //#endregion
 
 //#region  Understanding Big O defintion
+
 /**
  * @definition O(n)
  * We say that an algorithm is O(f(n))
@@ -74,6 +75,7 @@ console.log(`Time Elapsed ${(t2 - t1) / 1000} seconds`);
 //#endregion
 
 //#region  Calculating algorithms with Big O
+
 // Example 1
 
 function goingUpDown(n) {
@@ -229,4 +231,5 @@ function double(arr) {
  *
  * Logarithmic time complexity is great
  */
-//#endregion
+
+ //#endregion

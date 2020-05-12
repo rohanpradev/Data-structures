@@ -4,6 +4,7 @@
  * **/
 
 //#region Algorithm definition
+
 /**
  * @definition ALGORITHM
  * A process or a set of steps to accomplish a certain task
