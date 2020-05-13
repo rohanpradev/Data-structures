@@ -193,4 +193,70 @@ function mergeSort(arr) {
 	return merge(mergeSort(arr.slice(0, mid)), mergeSort(arr.slice(mid)));
 }
 
+// Quick Sort
+
+// 1. Helper function
+
+function pivot(arr, start = 0, end = arr.length - 1) {
+	let pivot = arr[start];
+	let pivotIdx = start;
+
+	for (let i = start + 1; i < arr.length; i++) {
+		if (arr[i] < pivot) {
+			pivotIdx++;
+			swap(arr, i, pivotIdx);
+		}
+	}
+	if (pivotIdx !== start) {
+		swap(arr, start, pivotIdx);
+	}
+	return pivotIdx;
+}
+
+const swap = (arr, idx1, idx2) => {
+	[arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+};
+
+// 2. QuickSort function
+
+function quickSort(arr, left = 0, right = arr.length - 1) {
+	if (left < right) {
+		let pivotIdx = pivot(arr, left, right);
+		quickSort(arr, left, pivotIdx - 1);
+		quickSort(arr, pivotIdx + 1, right);
+	}
+	return arr;
+}
+
+// Radix Sort
+
+function getLastDigit(num, place) {
+	return Math.floor(Math.abs(num) / Math.pow(10, place)) % 10;
+}
+
+function getDigitCount(num) {
+	return `${num}`.length || 0;
+}
+
+function maxDigit(arr) {
+	let max = -Infinity;
+	for (let ele of arr) {
+		max = Math.max(max, getDigitCount(ele));
+	}
+	return max;
+}
+
+function radixSort(arr) {
+	let maxDigit = maxDigit(arr);
+	for (let k = 0; k < maxDigit; k++) {
+		var digitBucket = Array.from({ length: 10 }, () => []);
+
+		for (let i = 0; i < arr.length; i++) {
+			digitBucket[getLastDigit(arr[i], k)].push(arr[i]);
+		}
+		arr = [].concat(...digitBucket);
+	}
+	return arr;
+}
+
 //#endregion

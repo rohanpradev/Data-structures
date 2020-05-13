@@ -1,11 +1,9 @@
 /**
- * @fileoverview INTERMEDIATE SORTING ALGORITHMS
+ * @fileoverview INTERMEDIATE SORTING ALGORITHM (Merge Sort)
  * This section contains all information about various sorting algorithms
  * @author Colt_Steele Udemy
  *
  * Merge Sort
- * Quick Sort
- * Radix Sort
  *
  * **/
 
@@ -113,16 +111,5 @@ function mergeSort(arr) {
 	return merge(left, right);
 }
 // Big O(n log n)
-
-//#endregion
-
-//#region Quick Sort
-
-/**
- * Like merge sort, exploits the fact that arrays of 0 or 1 element are always sorted.
- * Works by selecting one element called (called the "pivot") and finding the index where the pivot
- * should end up in the sorted array
- *
- */
 
 //#endregion
