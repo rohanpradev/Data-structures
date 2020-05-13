@@ -16,7 +16,7 @@
 
 <p align="center">
 
-My notes covering various fundamentals and examples of alorithms and data structures
+<h5 align="center">My notes covering various fundamentals and examples of alorithms and data structures in JavaScript!!</h5>
 
 <br />
 
