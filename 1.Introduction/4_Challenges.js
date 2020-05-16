@@ -234,7 +234,7 @@ function minSubArrayLen(nums, sum) {
 
 	while (start < nums.length) {
 		// if current window doesn't add up to the given sum then
-		// move the window to right
+		// add one element at the right to the window
 		if (total < sum && end < nums.length) {
 			total += nums[end];
 			end++;

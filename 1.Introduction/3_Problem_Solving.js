@@ -112,20 +112,18 @@ function anagram(str1, str2) {
 
 // Author Solution
 
-function anagram(st1, str2) {
+function anagram(str1, str2) {
 	if (str1.length !== str2.length) return false;
 	let lookup = {};
-	for (let i = 0; i < str1.length; i++) {
-		let letter = str1[i];
-		lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1);
+	for (let char of str1) {
+		lookup[char] ? (lookup[char] += 1) : (lookup[char] = 1);
 	}
-
-	for (let i = 0; i < str2.length; i++) {
-		let char = str2[i];
-		// cant find letter or letter is zero then it's not an anagram
-		if (!lookup[char]) return false;
-		else lookup[letter] -= 1;
+	for (let letter of str2) {
+		// check if letter is not there or zero then its not an anagram
+		if (!lookup[letter]) return false;
+		lookup[letter] -= 1;
 	}
+	return true;
 }
 
 //#endregion
@@ -144,6 +142,26 @@ function anagram(st1, str2) {
  * sumZero([1, 2, 3])  // undefined
  */
 
+// My Approach
+function sumZero(arr) {
+	let start = 0,
+		end = arr.length - 1;
+	let result;
+	while (start < end) {
+		let sum = arr[start] + arr[end];
+		if (sum === 0) {
+			result = [].concat(arr[start], arr[end]);
+			break;
+		} else if (sum > 0) {
+			end--;
+		} else {
+			start++;
+		}
+	}
+	return result;
+}
+
+// Author approach
 function sumZero(arr) {
 	let left = 0;
 	let right = arr.length - 1;
@@ -165,7 +183,7 @@ function sumZero(arr) {
 
 /** @problem_statement
  * Implement a @function countUniqueValues
- * which accepts  a sorred array, and counts unique values in the array
+ * which accepts  a sorted array, and counts unique values in the array
  * There can be negative numbers in the array, but it will always be sorted.
  *
  * @example
@@ -192,12 +210,12 @@ function countUniqueValues(arr) {
 
 function countUniqueValues(arr) {
 	let count = 0;
-	for (let i = 0; i < arr.length; i++) {
+	for (let i = 0; i < arr.length - 1; i++) {
 		if (arr[i] !== arr[i + 1]) {
-			count++;
+			++count;
 		}
 	}
-	return count;
+	return arr.length > 1 ? count + 1 : count;
 }
 
 //Author approach
@@ -290,20 +308,8 @@ function maxSubArraySum(arr, n) {
  * with a subset of data
  *
  * This pattern can tremendously decrease time complexity
- **/
-
-/** @problem_statement
- * Implement a @function maxSubArraySum
- * which accepts @param  array of integers
- * and @param n which is a number
- * The function should calculate the maximun sum of n consecutive elements in the array
  *
- * @example
- * maxSubArraySum([1, 2, 5, 2, 8, 1, 5], 2)  // 10
- * maxSubArraySum([1, 2, 5, 2, 8, 1, 5], 4)  // 17
- * maxSubArraySum([4, 2, 1, 6], 1)  // 6
- * maxSubArraySum([4, 2, 1, 6, 2], 4)  // 13
- * maxSubArraySum([], 4)  // null
- */
+ * Binary search is an example of divide and conquer algorithm
+ **/
 
 //#endregion
