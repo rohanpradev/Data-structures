@@ -260,3 +260,162 @@ function radixSort(arr) {
 }
 
 //#endregion
+
+// #region Singly Linked List
+
+class Node {
+	constructor(value) {
+		this.value = value;
+		this.next = null;
+	}
+}
+
+class SinglyLinkedList {
+	constructor() {
+		this.head = this.tail = null;
+		this.length = 0;
+	}
+
+	push(val) {
+		const newNode = new Node(val);
+		if (!this.head) {
+			this.head = this.tail = newNode;
+		} else {
+			this.tail.next = newNode;
+			this.tail = newNode;
+		}
+		++this.length;
+		return this;
+	}
+
+	pop() {
+		let removed;
+		if (!this.head) {
+			return undefined;
+		} else if (this.head === this.tail) {
+			removed = this.head;
+			this.head = this.tail = null;
+		} else {
+			let prev = this.head;
+			while (prev.next.next !== null) {
+				prev = prev.next;
+			}
+			removed = this.tail;
+			this.tail = prev;
+			this.tail.next = null;
+		}
+		this.length--;
+		return removed;
+	}
+
+	shift() {
+		let removed;
+		if (!this.head) {
+			return removed;
+		} else if (this.head === this.tail) {
+			removed = this.head;
+			this.head = this.tail = null;
+		} else {
+			removed = this.head;
+			this.head = this.head.next;
+		}
+		this.length--;
+		return removed;
+	}
+
+	unshift(val) {
+		const newNode = new Node(val);
+		if (!this.head) {
+			this.head = this.tail = newNode;
+		} else {
+			newNode.next = this.head;
+			this.head = newNode;
+		}
+		this.length++;
+		return this;
+	}
+
+	get(index) {
+		if (index < 0 || index >= this.length) return null;
+		let counter = 0;
+		let temp = this.head;
+		while (index !== counter) {
+			temp = temp.next;
+			counter++;
+		}
+		return temp;
+	}
+
+	set(index, val) {
+		let node = this.get(index);
+		if (!node) {
+			return false;
+		}
+		node.value = val;
+		return true;
+	}
+
+	insert(index, value) {
+		if (index > this.length || index < 0) return false;
+		if (index === 0) this.unshift(value);
+		else if (index === this.length) this.push(value);
+		else {
+			let newNode = new Node(val);
+			let prevNode = this.get(index - 1);
+			let temp = prevNode.next;
+			prevNode.next = newNode;
+			newNode.next = temp;
+			this.length++;
+		}
+		return true;
+	}
+
+	remove(index) {
+		if (index >= this.length || index < 0 || !this.head) return undefined;
+		else if (index === 0) return this.shift();
+		else if (index === this.length - 1) return this.pop();
+		else {
+			let prev = this.get(index - 1);
+			let removed = prev.next;
+			prev.next = removed.next;
+			this.length--;
+			return removed;
+		}
+	}
+
+	reverse() {
+		if (!head) return undefined;
+		else {
+			let node = this.head;
+			this.head = this.tail;
+			this.tail = node;
+
+			let next,
+				prev = null;
+
+			for (let i = 0; i < this.length; i++) {
+				next = node.next;
+				node.next = prev;
+
+				prev = node;
+				node = next;
+			}
+
+			return this;
+		}
+	}
+
+	print() {
+		let arr = [],
+			temp = this.head;
+
+		while (temp.next !== null) {
+			temp = temp.next;
+			arr.push(temp.value);
+		}
+		return arr;
+	}
+}
+
+//#endregion
+

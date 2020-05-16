@@ -109,6 +109,25 @@ function anagram(str1, str2) {
 	}
 	return true;
 }
+
+// Author Solution
+
+function anagram(st1, str2) {
+	if (str1.length !== str2.length) return false;
+	let lookup = {};
+	for (let i = 0; i < str1.length; i++) {
+		let letter = str1[i];
+		lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1);
+	}
+
+	for (let i = 0; i < str2.length; i++) {
+		let char = str2[i];
+		// cant find letter or letter is zero then it's not an anagram
+		if (!lookup[char]) return false;
+		else lookup[letter] -= 1;
+	}
+}
+
 //#endregion
 
 //#region Multiple Pointers Pattern

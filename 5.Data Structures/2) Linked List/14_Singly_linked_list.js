@@ -12,6 +12,8 @@
  *
  */
 
+//#region  SinglyLinkedList
+
 class Node {
 	constructor(value) {
 		this.value = value;
@@ -36,11 +38,12 @@ class SinglyLinkedList {
 	 */
 
 	push(val) {
+		const node = new Node(val);
 		if (!this.head) {
-			this.head = this.tail = new Node(val);
+			this.head = this.tail = node;
 		} else {
-			this.tail.next = new Node(val);
-			this.tail = this.tail.next;
+			this.tail.next = node;
+			this.tail = node;
 		}
 		this.length++;
 		return this;
@@ -69,6 +72,7 @@ class SinglyLinkedList {
 			while (current.next.next !== null) {
 				current = current.next;
 			}
+			removed = current.next;
 			this.tail = current;
 			this.tail.next = null;
 		}
@@ -207,9 +211,9 @@ class SinglyLinkedList {
 	/** @method remove
 	 * Removing a node from the Linked List at a specific position
 	 *
-	 * If index is less than zero or greater than length return undefined
+	 * If index is less than zero or greater than or equal to length return undefined
 	 * If index is same as length -1, pop
-	 * If index is 0 use shift, shift
+	 * If index is 0 use shift,
 	 * Otherwise using get method access node at index - 1.
 	 * Set the next property on that node to bethe next of the next node
 	 * Decrement the length
@@ -220,15 +224,56 @@ class SinglyLinkedList {
 	 */
 
 	remove(index) {
-		if (!this.head || index > this.length || index < 0) return undefined;
+		if (!this.head || index >= this.length || index < 0) return undefined;
 		else if (index === this.length - 1) return this.pop();
 		else if (index === 0) return this.shift();
 		else {
 			let prev = this.get(index - 1);
-			removed = prev.next;
-			prev.next = prev.next.next;
+			let removed = prev.next;
+			prev.next = removed.next;
 			this.length--;
 			return removed;
 		}
 	}
+
+	/** @method reverse
+	 * Reversing the Linked List in place
+	 *
+	 * Swap the head and tail
+	 * Create a variable called next.
+	 * Create a variable called prev
+	 * Create a variable called node and initialize it to the head property
+	 * Set next to be the next property on whatever node is
+	 * Set the next property on the node to be whatever prev is
+	 * Set the previous to be the value of the node variable
+	 * Set the node variable to be the value of the next variable
+	 *
+	 * @returns {SinglyLinkedList} the reverse of the Linked list
+	 */
+
+	reverse() {
+		if (!this.head) return undefined;
+		else if (this.head === this.tail) return this;
+		else {
+			// Step 1 Swap head and tail
+			let node = this.head;
+			this.head = this.tail;
+			this.tail = node;
+			// Step 2 Create vatiables next and prev
+			let next,
+				prev = null;
+
+			for (let i = 0; i, this.length; i++) {
+				next = node.next;
+				node.next = prev;
+				// Move to the next step
+				prev = node;
+				node = next;
+			}
+			return this;
+		}
+		return this;
+	}
 }
+
+//#endregion
