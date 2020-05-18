@@ -10,9 +10,16 @@
  *
  * Linked list consist of nodes and each node has a value and a pointer to another node or null
  *
- */
+ **/
 
-//#region  SinglyLinkedList
+//#region  Singly Linked Lists
+
+/** Singly Linked Lists
+ * Singly Linked list are an excellent alternative to arrays,
+ * 	when insertion and deletion at the beginning are frequently required
+ *
+ * Arrays contain a built in index, whereas linked lists do not
+ */
 
 class Node {
 	constructor(value) {
@@ -27,7 +34,11 @@ class SinglyLinkedList {
 		this.length = 0;
 	}
 
-	/** @method push should accept a value
+	/** @method push
+	 * Adds a new node to the end of the linked list
+	 *
+	 * @pseudocode
+	 * push should accept a value
 	 * create a new Node using the value passed to the function
 	 * If there is no head property on the list , set head and tail to be the newly created node
 	 * Otherwise set the next property on the tail to be the new node and set the tail property on the list
@@ -35,6 +46,7 @@ class SinglyLinkedList {
 	 * Return the linked list
 	 *
 	 * @param {any} val
+	 * @returns {SinglyLinkedList} the linked list
 	 */
 
 	push(val) {
@@ -52,13 +64,14 @@ class SinglyLinkedList {
 	/** @method pop
 	 * Removes a node from the end of the linked list
 	 *
+	 * @pseudocode
 	 * If there are no nodes in the list return undefined
 	 * Loop through the list until you reach the tail
 	 * Set the next property of second to last property to be null
 	 * Decrement the length of the list by 1
 	 * Return the node removed.
 	 *
-	 * @returns {Node | undefined}
+	 * @returns {Node | undefined} the removed node
 	 */
 
 	pop() {
@@ -83,13 +96,14 @@ class SinglyLinkedList {
 	/** @method shift
 	 * Removes a node from the beginning of the linked list
 	 *
+	 * @pseudocode
 	 * If there are no nodes in the list return undefined
 	 * Store current head property in a variable
 	 * Set the head property to be the current head's next property
 	 * Decrement the length by 1
 	 * Returns the node removed
 	 *
-	 * @returns {Node | undefined}
+	 * @returns {Node | undefined} the removed node
 	 */
 
 	shift() {
@@ -108,6 +122,7 @@ class SinglyLinkedList {
 	/** @method unshift
 	 * Adding a new node to the beginning of the linked list
 	 *
+	 * @pseudocode
 	 * The function should accept a value
 	 * Create a new node using value passed to the function
 	 * If there is no head property on the list,set head and tail to the newly created list.
@@ -116,7 +131,7 @@ class SinglyLinkedList {
 	 * Return the list
 	 *
 	 * @param {any} val
-	 * @returns {Node} the linked list
+	 * @returns {SinglyLinkedList} the linked list
 	 */
 
 	unshift(val) {
@@ -134,12 +149,13 @@ class SinglyLinkedList {
 	/** @method get
 	 * Retrieving the node by its position in the linked list
 	 *
+	 *  @pseudocode
 	 * The function should accept an index
 	 * If the index is less than zero or greater than or equal to the length of the list, return null
 	 * Loop through the list until you reach the index and return the node at the specified index
 	 *
 	 * @param {number} index
-	 * @returns {any} the value at the provided index
+	 * @returns {Node} the node at the provided index
 	 */
 
 	get(index) {
@@ -156,6 +172,7 @@ class SinglyLinkedList {
 	/** @method set
 	 * Changing the value of the node based on its position in the Linked List
 	 *
+	 * @pseudocode
 	 * The function should accept an index and a value
 	 * If the node is not found return false
 	 * If the node is found, set the value of that node to be the value passed to the function
@@ -178,6 +195,7 @@ class SinglyLinkedList {
 	/** @method insert
 	 * Insert a new node based on its position in the Linked List
 	 *
+	 * @pseudocode
 	 * The function should accept an index and a value
 	 * If index is less than 0 or greater than the length, return false
 	 * If index is same as the length, push a new node to the end of the list.
@@ -211,6 +229,7 @@ class SinglyLinkedList {
 	/** @method remove
 	 * Removing a node from the Linked List at a specific position
 	 *
+	 * @pseudocode
 	 * If index is less than zero or greater than or equal to length return undefined
 	 * If index is same as length -1, pop
 	 * If index is 0 use shift,
@@ -239,6 +258,7 @@ class SinglyLinkedList {
 	/** @method reverse
 	 * Reversing the Linked List in place
 	 *
+	 * @pseudocode
 	 * Swap the head and tail
 	 * Create a variable called next.
 	 * Create a variable called prev
@@ -273,6 +293,24 @@ class SinglyLinkedList {
 			return this;
 		}
 		return this;
+	}
+
+	/** @method print
+	 * Printing the values in the Linked List from the start
+	 *
+	 * @returns {Array} an array containing the values in the linked list
+	 */
+
+	print() {
+		if (!this.head) return undefined;
+		let temp = this.head;
+		let values = [];
+		while (temp.next !== null) {
+			values.push(temp.value);
+			temp = temp.next;
+		}
+		values.push(temp.value);
+		return values;
 	}
 }
 
