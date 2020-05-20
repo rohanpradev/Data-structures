@@ -44,7 +44,7 @@ addUpto2(100000);
 var t2 = performance.now();
 console.log(`Time Elapsed ${(t2 - t1) / 1000} seconds`);
 //addUpto1 Time Elapsed 0.00437000000232365 seconds
-//addUpto2 TTime Elapsed 0.000004999994416721165 seconds
+//addUpto2 Time Elapsed 0.000004999994416721165 seconds
 //#endregion
 
 //#region  Understanding Big O defintion

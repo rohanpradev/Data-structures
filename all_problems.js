@@ -419,3 +419,146 @@ class SinglyLinkedList {
 
 //#endregion
 
+//#region Doubly Linked List
+
+class Node {
+	constructor(val) {
+		this.value = val;
+		this.prev = this.next = null;
+	}
+}
+
+class DoublyLinkedList {
+	constructor() {
+		this.head = this.tail = null;
+		this.length = 0;
+	}
+
+	push(val) {
+		const node = new Node(val);
+		if (this.length === 0) this.head = this.tail = node;
+		else {
+			this.tail.next = node;
+			node.prev = this.tail;
+			this.tail = node;
+		}
+		this.length++;
+		return this;
+	}
+
+	pop() {
+		let removed = this.tail || undefined;
+		if (!this.length) return removed;
+		else if (this.length === 1) this.head = this.tail = null;
+		else {
+			this.tail = removed.prev;
+			removed.prev = null;
+			this.tail.next = null;
+		}
+		this.length--;
+		return removed;
+	}
+
+	shift() {
+		let removed = this.head || undefined;
+		if (this.length === 0) return removed;
+		else if (this.length === 1) this.head = this.tail = null;
+		else {
+			this.head = removed.next;
+			this.head.prev = null;
+			removed.next = null;
+		}
+		this.length--;
+		return removed;
+	}
+
+	unshift(val) {
+		const node = new Node(val);
+		if (this.length === 0) this.head = this.tail = node;
+		else {
+			node.next = this.head;
+			this.head.prev = node;
+			this.head = node;
+		}
+		this.length++;
+		return this;
+	}
+
+	get(index) {
+		if (index < 0 || index >= this.length || this.length === 0) return null;
+		return this.loop(index, index > Math.floor(this.length / 2));
+	}
+
+	// Helper method to loop from start or end of the linked list
+	loop(index, reverse) {
+		let current = reverse ? this.head : this.tail;
+		let counter = reverse ? 0 : this.length - 1;
+		while (counter !== index) {
+			current = reverse ? current.next : current.prev;
+			reverse ? counter++ : counter--;
+		}
+		return current;
+	}
+
+	set(index, val) {
+		let node = this.get(index);
+		if (!node) return false;
+		node.value = val;
+		return true;
+	}
+
+	insert(index, val) {
+		if (index < 0 || index > this.length) return false;
+		const node = new Node(val);
+		if (index === 0) this.unshift(val);
+		else if (index === this.length) this.push(val);
+		else {
+			const prevNode = this.get(index - 1);
+			const afterNode = prevNode.next;
+
+			prevNode.next = node;
+			node.prev = prevNode;
+
+			node.next = afterNode;
+			afterNode.prev = node;
+			this.length++;
+		}
+		return true;
+	}
+
+	remove(index) {
+		if (index < 0 || index >= this.length) return undefined;
+		if (index === 0) return this.shift(val);
+		else if (index === this.length - 1) return this.pop();
+		else {
+			const removedNode = this.get(index);
+			const beforeNode = removedNode.prev;
+			const afterNode = removedNode.next;
+
+			beforeNode.next = afterNode;
+			afterNode.prev = beforeNode;
+
+			removedNode.next = removedNode.prev = null;
+			this.length--;
+			return removedNode;
+		}
+	}
+
+	reverse() {
+		let current = this.head;
+		let prev = null;
+		while (current) {
+			let next = current.next;
+			current.next = prev;
+			current.prev = next;
+
+			prev = current;
+			current = next;
+		}
+		this.head = this.tail;
+		this.tail = prev;
+		return this;
+	}
+}
+
+//#endregion

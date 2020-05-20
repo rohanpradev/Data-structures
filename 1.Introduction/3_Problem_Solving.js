@@ -241,7 +241,7 @@ function countUniqueValues(arr) {
  * This pattern involves creating a window
  * which can either be an array or number from one position to another
  *
- * Depending on certain condition , the window either increases or closes (and a new window is created)
+ * Depending on certain condition, the window either increases or closes (and a new window is created)
  *
  * Very useful for keeping track of a subset data in an array/string etc
  **/

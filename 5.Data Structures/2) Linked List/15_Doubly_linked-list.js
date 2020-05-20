@@ -10,7 +10,7 @@
  * to the "previous" node
  *
  * Better than Singly Linked Lists for finding nodes and can be done in half the time!
- * 
+ *
  * However they do take up more memoryconsidering the extra pointer
  */
 
@@ -29,8 +29,8 @@ class DoublyLinkedList {
 		this.length = null;
 	}
 
-	/** @method
-	 * Add a new node tothe end of the Doubly linked list
+	/** @method push
+	 * Add a new node to the end of the Doubly linked list
 	 *
 	 * @pseudocode
 	 * push should accept a value
@@ -184,8 +184,8 @@ class DoublyLinkedList {
 		if (index < 0 || index >= this.length) return null;
 		let temp, count;
 		if (index > Math.floor(this.length / 2)) {
-			temp = this.tail;
 			count = this.length - 1;
+			temp = this.tail;
 			while (count !== index) {
 				temp = temp.prev;
 				count--;
@@ -250,9 +250,11 @@ class DoublyLinkedList {
 			const prevNode = this.get(index - 1);
 			const afterNode = prevNode.next;
 			// Insert the new node by modifying the links to point to previous and next nodes
-			(node.prev = prevNode), (node.next = afterNode);
-			// Change the previous and after node next and prev values to the new node
-			(prevNode.next = node), (afterNode.prev = node);
+			node.prev = prevNode;
+			node.next = afterNode;
+			// Change the previous and after node's next and prev values to the new node
+			prevNode.next = node;
+			afterNode.prev = node;
 			// Increment length and then return true
 			this.length++;
 			return true;
@@ -265,7 +267,7 @@ class DoublyLinkedList {
 	 * @pseudocode
 	 * If index is less than zero or greater than or equal to the length, return undefimed.
 	 * If the index is 0, shift
-	 * If the index is the same as the length -1, pop
+	 * If the index is the same as the length - 1, pop
 	 * Use the get method to retrieve the item to be removed
 	 * Update the next and prev properties to remove the found node from the list
 	 * Set the next and prev on the found node to be null
@@ -294,6 +296,45 @@ class DoublyLinkedList {
 			this.length--;
 			return removedNode;
 		}
+	}
+
+	/** @method reverse
+	 * Reversing the Doubly Linked List in place
+	 *
+	 * @pseudocode
+	 * Create a variable called current and initialize it to the head property
+	 * Create a variable called prev and assign it null
+	 * Loop around current
+	 * Create a variable called next.
+	 * Set next to be the next property on whatever current is
+	 * Set the next property on the current to be whatever prev is
+	 * Set the previous to be the value of the current variable
+	 * Set the current variable to be the value of the next variable
+	 * 
+	 * Assign head to value of tail
+	 * Assign tail to value of prev
+	 * 
+	 * Return the list
+	 *
+	 * @returns {DoublyLinkedList} the reverse of the Linked list
+	 */
+
+	reverse() {
+		let current = this.head;
+		let prev = null;
+		while (current) {
+			let next = current.next;
+			// Switch links assign prev to next
+			current.next = prev;
+			current.prev = next;
+			// Move to the next node
+			prev = current;
+			current = next;
+		}
+		// Swap head and tail 
+		this.head = this.tail;
+		this.tail = prev;
+		return this;
 	}
 }
 
