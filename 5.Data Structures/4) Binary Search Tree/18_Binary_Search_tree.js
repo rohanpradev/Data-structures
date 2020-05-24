@@ -144,7 +144,7 @@ class BinarySearchTree {
 					}
 					temp = temp.left;
 				} else {
-                    // Duplicate case
+					// Duplicate case
 					return undefined;
 				}
 			}
