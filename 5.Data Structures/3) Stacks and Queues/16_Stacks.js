@@ -41,15 +41,12 @@ stack.pop(); // 10
 
 //#region Stack main implementation
 
-/**
- * @class Node
+/** @class Node
  * Helper class to keep track of the elements in the stack
  *
  * @property next -> points to the next node in the stack or undefined
  * @property value -> Stores the value
  */
-
-use('strict');
 
 class Node {
 	constructor(val) {
@@ -58,8 +55,7 @@ class Node {
 	}
 }
 
-/**
- * @class Stack
+/** @class Stack
  * Implementation of stack
  *
  * @constructor Initializes the following properties as shown below

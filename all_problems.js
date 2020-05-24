@@ -562,3 +562,78 @@ class DoublyLinkedList {
 }
 
 //#endregion
+
+//#region Stack
+class Node {
+	constructor(val) {
+		this.value = val;
+		this.next = null;
+	}
+}
+
+class Stack {
+	constructor() {
+		this.first = null;
+		this.last = null;
+		this.size = 0;
+	}
+
+	push(val) {
+		const node = new Node(val);
+		if (!this.first) this.first = this.last = node;
+		else {
+			let temp = this.first;
+			this.first = node;
+			node.next = temp;
+		}
+		return ++this.size;
+	}
+
+	pop() {
+		if (!this.first) return null;
+		let removed = this.first;
+		if (this.first === this.last) this.last = null;
+		this.first = removed.next;
+		this.size--;
+		return removed.value;
+	}
+}
+
+//#endregion
+
+//#region Queue
+
+class Node {
+	constructor(val) {
+		this.value = val;
+		this.next = null;
+	}
+}
+
+class Queue {
+	constructor() {
+		this.first = this.last = null;
+		this.size = 0;
+	}
+
+	enqueue(val) {
+		const node = new Node(val);
+		if (this.size === 0) this.first = this.last = node;
+		else {
+			this.last.next = node;
+			this.last = node;
+		}
+		return ++this.size;
+	}
+
+	dequeue() {
+		if (!this.first) return null;
+		let removed = this.first;
+		if (this.first === this.last) this.last = null;
+		this.first = this.first.next;
+		this.size--;
+		return removed.value;
+	}
+}
+
+//#endregion
