@@ -151,8 +151,8 @@ function dfs_post(tree) {
 
 //#region Depth First Search InOrder
 
-/** DFS - PostOrder
- * Visit the all children first then the root node
+/** DFS - InOrder
+ * Visit the all children first then the parent
  *
  * @example
  *            10							[3, 8, 6, 10, 15, 20]
@@ -178,12 +178,12 @@ function dfs_post(tree) {
  *
  * Return the array of values
  *
- * @method dfs_in
+ * @method depthFirstSearch_inOrder
  * @param { BinarySearchTree } tree
  * @returns { Array<any> } an array of values traversed in DFS InOrder
  */
 
-function dfs_in(tree) {
+function depthFirstSearch_inOrder(tree) {
 	const values = [];
 	function traverse(node) {
 		if (node.left) traverse(node.left);

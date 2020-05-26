@@ -637,3 +637,173 @@ class Queue {
 }
 
 //#endregion
+
+//#region Trees
+
+class Node {
+	constructor(value) {
+		this.value = value;
+		this.left = this.right = null;
+	}
+}
+
+class BinarySearchTree {
+	constructor() {
+		this.root = null;
+	}
+
+	insert(val) {
+		const node = new Node(val);
+		if (!this.root) this.root = node;
+		else {
+			let temp = this.root;
+			while (true) {
+				if (val > temp.value) {
+					if (!temp.right) {
+						temp.right = node;
+						break;
+					}
+					temp = temp.right;
+				} else if (val < temp.value) {
+					if (!temp.left) {
+						temp.left = node;
+						break;
+					}
+					temp = temp.left;
+				} else return undefined;
+			}
+		}
+		return this;
+	}
+
+	find(val) {
+		if (!this.root) return false;
+		let temp = this.root;
+		while (true) {
+			if (temp.value === val) return true;
+			else if (temp.value < val) {
+				if (!temp.right) return false;
+				temp = temp.right;
+			} else {
+				if (!temp.left) return false;
+				temp = temp.left;
+			}
+		}
+	}
+
+	breadthFirstSearch() {
+		const queue = this.root ? [this.root] : [];
+		let values = [];
+		while (queue.length) {
+			let removed = queue.shift();
+			values.push(removed.value);
+			if (removed.left) queue.push(removed.left);
+			if (removed.right) queue.push(removed.right);
+		}
+		return values.length ? values : undefined;
+	}
+
+	depthFirstSearch_preOrder() {
+		if (!this.root) return undefined;
+		let values = [];
+		function traverse(node) {
+			values.push(node.value);
+			if (node.left) traverse(node.left);
+			if (node.right) traverse(node.right);
+		}
+		traverse(this.root);
+		return values;
+	}
+
+	depthFirstSearch_postOrder() {
+		if (!this.root) return undefined;
+		let values = [];
+		function traverse(node) {
+			if (node.left) traverse(node.left);
+			if (node.right) traverse(node.right);
+			values.push(node.value);
+		}
+		traverse(this.root);
+		return values;
+	}
+
+	depthFirstSearch_inOrder() {
+		if (!this.root) return undefined;
+		let values = [];
+		function traverse(node) {
+			if (node.left) traverse(node.left);
+			values.push(node.value);
+			if (node.right) traverse(node.right);
+		}
+		traverse(this.root);
+		return values;
+	}
+}
+
+//#endregion
+
+//#region Heaps
+
+class BinaryHeap {
+	constructor() {
+		this.values = [];
+	}
+
+	insert(value) {
+		this.values.push(value);
+		this.bubbleUp();
+	}
+
+	bubbleUp() {
+		let index = this.values.length - 1;
+		let elem = this.values[index];
+
+		while (index > 0) {
+			let parentIdx = Math.floor((index - 1) / 2);
+			let parent = this.values[parentIdx];
+			if (elem <= parent) break;
+			this.values[index] = parent;
+			this.values[parentIdx] = elem;
+			index = parentIdx;
+		}
+	}
+
+	extractMax() {
+		let max = this.values[0];
+		let end = this.values[this.values.length - 1];
+		if (this.values.length > 0) {
+			this.values[0] = end;
+			this.sinkDown();
+		}
+		return max;
+	}
+
+	sinkDown() {
+		let index = 0;
+		let element = this.values[0];
+		let length = this.values.length;
+		while (true) {
+			let leftChildIdx = 2 * index + 1;
+			let rightChildIdx = 2 * index + 2;
+			let swap = null;
+			let leftChild, rightChild;
+
+			if (leftChildIdx < length) {
+				leftChild = this.values[leftChildIdx];
+				swap = leftChildIdx;
+			}
+
+			if (rightChildIdx < length) {
+				rightChild = this.values[leftChildIdx];
+				if ((swap === null && rightChild > element) || (swap !== null && rightChild > leftChild)) swap = rightChildIdx;
+			}
+
+			if (swap === null) break;
+			this.values[index] = this.values[swap];
+			this.values[swap] = element;
+			index = swap;
+		}
+	}
+}
+
+//#endregion
