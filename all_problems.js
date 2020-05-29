@@ -770,7 +770,7 @@ class BinaryHeap {
 
 	extractMax() {
 		let max = this.values[0];
-		let end = this.values[this.values.length - 1];
+		let end = this.values.pop();
 		if (this.values.length > 0) {
 			this.values[0] = end;
 			this.sinkDown();
@@ -790,7 +790,7 @@ class BinaryHeap {
 
 			if (leftChildIdx < length) {
 				leftChild = this.values[leftChildIdx];
-				swap = leftChildIdx;
+				if (element < leftChild) swap = leftChildIdx;
 			}
 
 			if (rightChildIdx < length) {
