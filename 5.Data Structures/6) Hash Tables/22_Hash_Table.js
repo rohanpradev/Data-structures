@@ -188,9 +188,96 @@ class HashTable {
 		for (let i = 0; i < Math.min(key.length, 100); i++) {
 			let char = key[i];
 			let value = char.charCodeAt(0) - 96;
-			total = (total + WIERD_PRIME + value) % this.keyMap.length;
+			total = (total * WIERD_PRIME + value) % this.keyMap.length;
 		}
 		return total;
 	}
+
+	/** @method set
+	 * Accepts a key and value
+	 * Hashes the key
+	 * Stores the key-value pair in the hash table array via separate chaining ⛓
+	 *
+	 * @param {*} key
+	 * @param {*} value
+	 */
+
+	set(key, value) {
+		const index = this._hash(key);
+		if (!this.keyMap[index]) {
+			this.keyMap[index] = [];
+		}
+		this.keyMap[index].push([key, value]);
+		return this.keyMap[index];
+	}
+
+	/** @method get
+	 * Fetches the value associated with the given key
+	 *
+	 * @param {string} key
+	 * @returns {any} the values associated with the key
+	 */
+
+	get(key) {
+		const index = this._hash(key);
+		if (this.keyMap[index]) {
+			for (let arr of this.keyMap[index]) {
+				if (arr[0] === key) return arr[1];
+			}
+		}
+		return undefined;
+	}
+
+	/** @method values
+	 *	fethes all the values in the hash map
+	 * @returns {Array<any>} the values in the hash map
+	 */
+
+	values() {
+		const valuesArr = [];
+		for (let elem of this.keyMap) {
+			if (elem) {
+				for (let value of elem) {
+					// check for duplicates
+					if (!valuesArr.includes(value[1])) {
+						valuesArr.push(value[1]);
+					}
+				}
+			}
+		}
+		return valuesArr;
+	}
+
+	/** @method keys
+	 *	fethes all the keys in the hash map
+	 * @returns {Array<any>} the keys in the hash map
+	 */
+
+	keys() {
+		const keysArr = [];
+		for (let elem of this.keyMap) {
+			if (elem) {
+				for (let key of elem) {
+					// check for duplicates
+					if (!keysArr.includes(key[0])) {
+						keysArr.push(key[0]);
+					}
+				}
+			}
+		}
+		return keysArr;
+	}
 }
+
+// 🐛 TESTING VALUES
+
+let ht = new HashTable();
+ht.set('maroon', '#800000');
+ht.set('yellow', '#FFFF00');
+ht.set('olive', '#808000');
+ht.set('salmon', '#FA8072');
+ht.set('lightcoral', '#F08080');
+ht.set('mediumvioletred', '#C71585');
+ht.set('plum', '#DDA0DD');
+
 //#endregion

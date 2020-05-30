@@ -795,7 +795,11 @@ class BinaryHeap {
 
 			if (rightChildIdx < length) {
 				rightChild = this.values[leftChildIdx];
-				if ((swap === null && rightChild > element) || (swap !== null && rightChild > leftChild)) swap = rightChildIdx;
+				if (
+					(swap === null && rightChild > element) ||
+					(swap !== null && rightChild > leftChild)
+				)
+					swap = rightChildIdx;
 			}
 
 			if (swap === null) break;
@@ -803,6 +807,68 @@ class BinaryHeap {
 			this.values[swap] = element;
 			index = swap;
 		}
+	}
+}
+
+//#endregion
+
+//#region Hash tables
+
+class HashTable {
+	constructor(size = 17) {
+		this.keyMap = new Array(size);
+	}
+
+	_hash(key) {
+		let total = 0;
+		let WIERD_PRIME = 31;
+		for (let i = 0; i < Math.min(key.length, 100); i++) {
+			let char = key[i];
+			let value = char.charCodeAt(0) - 96;
+			total = (total * WIERD_PRIME + value) % this.keyMap.length;
+		}
+		return total;
+	}
+
+	set(key, value) {
+		const index = this._hash(key);
+		if (!this.keyMap[index]) this.keyMap[index] = [];
+		this.keyMap[index].push([key, value]);
+		return this.keyMap[index];
+	}
+
+	get(key) {
+		const index = this._hash(key);
+		if (this.keyMap[index]) {
+			for (let element of this.keyMap[index]) {
+				if (element[0] === key) return element[1];
+			}
+		}
+		return undefined;
+	}
+
+	keys() {
+		let keysArr = [];
+		for (let keys of this.keyMap) {
+			if (keys) {
+				for (let key of keys) {
+					if (!keysArr.includes(key[0])) keysArr.push(key[0]);
+				}
+			}
+		}
+		return keysArr;
+	}
+
+	values() {
+		let valuesArr = [];
+		for (let values of this.keyMap) {
+			if (values) {
+				for (let value of values) {
+					if (!valuesArr.includes(value[1])) valuesArr.push(value[1]);
+				}
+			}
+		}
+		return valuesArr;
 	}
 }
 
