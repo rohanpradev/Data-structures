@@ -873,3 +873,78 @@ class HashTable {
 }
 
 //#endregion
+
+//#region Graphs
+
+class Graph {
+	constructor() {
+		this.adjacencyList = {};
+	}
+
+	addVertex(vertex) {
+		if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+	}
+
+	addEdge(vertex1, vertex2) {
+		this.adjacencyList[vertex1].push(vertex2);
+		this.adjacencyList[vertex2].push(vertex1);
+	}
+
+	removeEdge(vertex1, vertex2) {
+		this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
+			(v) => v !== vertex2
+		);
+		this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
+			(v) => v !== vertex1
+		);
+	}
+
+	removeVertex(vertex) {
+		while (this.adjacencyList[vertex].length) {
+			let v = this.adjacencyList[vertex].pop();
+			this.removeEdge(v, vertex);
+		}
+		delete vertex;
+	}
+
+	dfs_recursive(vertex) {
+		const result = [];
+		const visited = {};
+		const adjacencyList = this.adjacencyList;
+
+		(function dfs(v) {
+			if (!v) return;
+			result.push[neighbour];
+			visited[neighbour] = true;
+			for (let neighbour of adjacencyList) {
+				if (!visited[neighbour]) {
+					return dfs(neighbour);
+				}
+			}
+		})(vertex);
+
+		return result;
+	}
+
+	dfs_iterative(vertex) {
+		const result = [];
+		const visited = {};
+		const stack = [vertex];
+
+		visited[vertex] = true;
+		while (stack.length) {
+			let removed = stack.pop();
+			result.push(removed);
+
+			for (let neighbour of this.adjacencyList[removed]) {
+				if (!visited[neighbour]) {
+					visited[neighbour] = true;
+					stack.push(neighbour);
+				}
+			}
+		}
+
+		return result;
+	}
+}
+//#endregion

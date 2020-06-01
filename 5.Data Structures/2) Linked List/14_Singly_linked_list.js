@@ -75,7 +75,7 @@ class SinglyLinkedList {
 	 */
 
 	pop() {
-		let removed = this.tail || undefined;
+		const removed = this.tail || undefined;
 		if (!this.head) {
 			return removed;
 		} else if (this.head === this.tail) {
@@ -85,7 +85,6 @@ class SinglyLinkedList {
 			while (current.next.next !== null) {
 				current = current.next;
 			}
-			removed = current.next;
 			this.tail = current;
 			this.tail.next = null;
 		}
@@ -292,7 +291,6 @@ class SinglyLinkedList {
 			}
 			return this;
 		}
-		return this;
 	}
 
 	/** @method print

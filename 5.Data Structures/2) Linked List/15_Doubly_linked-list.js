@@ -280,7 +280,7 @@ class DoublyLinkedList {
 
 	remove(index) {
 		if (index < 0 || index >= this.length) return undefined;
-		if (index === 0) return this.shift(val);
+		if (index === 0) return this.shift();
 		else if (index === this.length - 1) return this.pop();
 		else {
 			const removedNode = this.get(index);
@@ -336,6 +336,32 @@ class DoublyLinkedList {
 		this.tail = prev;
 		return this;
 	}
+	
+	// Author approach
+	
+	// reverse() {
+	// 	if (!this.head) return undefined;
+	// 	if (this.length === 1) return this;
+	// 	else {
+	// 		const node = this.head;
+	// 		this.head = this.tail;
+	// 		this.tail = node;
+
+	// 		let next,
+	// 			prev = null;
+
+	// 		for (let i = 0; i < this.length; i++) {
+	// 			next = node.next;
+
+	// 			node.next = prev;
+	// 			node.prev = next;
+
+	// 			prev = node;
+	// 			node = next;
+	// 		}
+	// 		return this;
+	// 	}
+	// }
 }
 
 //#endregion
