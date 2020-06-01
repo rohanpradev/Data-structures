@@ -202,7 +202,7 @@ class Graph {
 	 *
 	 *
 	 * @explanation
-	 * The function should accept a starting node
+	 * The function should accept a starting vertex
 	 * Create a list to store the end result, to be returned at the very end
 	 * Create an object to store the visited verticed
 	 * Create a helper function which accepts a vertex
@@ -246,11 +246,11 @@ class Graph {
 	 *				 	S.push(N)
 	 *
 	 * @explanation
-	 * The function should accept a starting node
+	 * The function should accept a starting vertex
 	 * Create a stack to help use keep track of vertices(use list/array)
 	 * Create a list to store the end result, to be returned at the very end
 	 * Create an object to store the visited vertices.
-	 * Add the starting vertex to the stack, maek it as visited
+	 * Add the starting vertex to the stack, mark it as visited
 	 * While stack has something in it:
 	 * 		🔲 Pop the next vertex from the stack
 	 * 		🔲 If that vertex has'nt been visited yet:
@@ -267,15 +267,49 @@ class Graph {
 		visited[vertex] = true;
 
 		while (stack.length) {
-			let removed = stack.pop();
-			result.push(removed);
+			let currentVertex = stack.pop();
+			result.push(currentVertex);
 
-			for (let neighbour of this.adjacencyList[removed]) {
+			for (let neighbour of this.adjacencyList[currentVertex]) {
 				if (!visited[neighbour]) {
 					visited[neighbour] = true;
 					stack.push(neighbour);
 				}
 			}
+		}
+		return result;
+	}
+
+	/**
+	 * BFS
+	 * The function should accept a starting vertex
+	 * Create a queue(use list/array) and place the starting vertex in it.
+	 * Create an array to store the vertices visited.
+	 * Create an object to store the visited vertices.
+	 * Mark the starting vertex as visited
+	 * Loop as long as there is anything in the queue:
+	 * Remove the first vertex from the queue and push it into the array that stores visited vertices
+	 * Loop over each neighbour in the adjacency list for the vertex you are visiting.
+	 * If it is not inside the object that stores nodes visited, mark it as visited and enqueue that vertex.
+	 */
+
+	breadthFirstSearch(vertex) {
+		const queue = [vertex];
+		const visited = {};
+		const result = [];
+
+		visited[vertex] = true;
+
+		while (queue.length) {
+			let currentVertex = queue.shift();
+			result.push(currentVertex);
+
+			this.adjacencyList[currentVertex].forEach((neighbour) => {
+				if (!visited[neighbour]) {
+					visited[neighbour] = true;
+					queue.push(neighbour);
+				}
+			});
 		}
 		return result;
 	}

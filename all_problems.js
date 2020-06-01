@@ -946,5 +946,27 @@ class Graph {
 
 		return result;
 	}
+
+	bfs(vertex) {
+		const queue = [vertex];
+		const result = [];
+		const visited = {};
+
+		visited[vertex] = true;
+
+		while (queue.length) {
+			let removed = queue.shift();
+			result.push(removed);
+
+			for (let neighbour of this.adjacencyList[removed]) {
+				if (!visited[neighbour]) {
+					visited[neighbour] = true;
+					queue.push(neighbour);
+				}
+			}
+		}
+
+		return result;
+	}
 }
 //#endregion
