@@ -10,7 +10,7 @@
 
   
 
-<h3 align="center"> Algorithms and Data Structures </h3>
+<h3 align="center"> JavaScript along with Algorithms and Data Structures </h3>
 
   
 
@@ -33,6 +33,8 @@
 ## Topics covered
 
   
+- JavaScript Concepts (Wierd Parts)
+
 
 - Big O notation
 
@@ -60,7 +62,15 @@
 
 - Sorting Algorithms
 
-  
+
+
+- Data Structures
+
+
+
+- Dynamic Programming
+
+
 
 ## Table of Contents
 
