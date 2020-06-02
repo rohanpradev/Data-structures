@@ -223,7 +223,7 @@ class Graph {
 			if (!v) return;
 			visited[v] = true;
 			results.push(v);
-			for (let neighbour of adjacencyList[vertex]) {
+			for (let neighbour of adjacencyList[v]) {
 				if (!visited[neighbour]) return dfs(neighbour);
 			}
 		})(vertex);
@@ -349,7 +349,9 @@ g.addEdge('C', 'E');
 g.addEdge('D', 'E');
 g.addEdge('D', 'F');
 g.addEdge('E', 'F');
-g.depthFirstRecursive('A');
+g.depthFirstRecursive('A');  // ["A", "B", "D", "E", "C"]
+g.depthFirstIterative('A');  // ["A", "C", "E", "F", "D", "B"]
+g.breadthFirstSearch('A');  // ["A", "B", "C", "D", "E", "F"]
 
 //          A
 //        /   \
