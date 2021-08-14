@@ -313,28 +313,3 @@ function maxSubArraySum(arr, n) {
  **/
 
 //#endregion
-
-/**
- * @function longestSubstr
- * @param str input string
- * @returns a number which denotes the longest substring without repeating characters
- *
- * @example
- * "abcbdca" should return 4
- */
-
-function longestSubsr(str: string) {
-  if (str.length <= 1) return str.length;
-  const seenChar = {};
-  let longest = 0;
-  let left = 0;
-  for (let right = 0; right < str.length; right++) {
-    const curChar = str[right];
-    if (seenChar[curChar] >= left) {
-      left = seenChar[curChar] + 1;
-    }
-    seenChar[curChar] = right;
-    longest = Math.max(longest, right - left + 1);
-  }
-  return longest;
-}
